@@ -1,0 +1,24 @@
+body {background-color: rgb(180,225,255);}
+
+.apptitle {font-size:40px; font-family: Georgia, 'TW Cen MT', Times, serif ; 
+    font-weight: bold;}
+
+.hover {cursor: pointer;}
+
+.menuarea {background-color: rgb(180,225,255); }
+
+/* * {outline: 2px red solid;} */
+
+.button {background-color: rgb(76,0,191); border: 0;}
+.button1 {background-color: rgb(0,45,0); border: 0;}
+
+.changevalues   {border: 0; margin: 0 auto;}
+
+/* .textbox {background-color: rgb(0, 45, 0);} */
+.textbox {background-color: rgb(40, 45, 0);}
+
+.texttitle      {color: rgb(0, 230, 0); background-color: rgb(0, 50, 0); border: rgb(0, 50, 0) solid 1px;}
+.textfield      {color: rgb(0, 230, 0); background-color: rgb(0, 50, 0); border: rgb(0, 200, 0) solid 1px;}
+.pulldown       {color: rgb(0, 230, 0); background-color: rgb(0,50,0); border: rgb(0, 50, 0) solid 1px;}
+.bitselection   {color: rgb(0, 230, 0); background-color: rgb(0,50,0); border: rgb(0, 50, 0) solid 1px;}
+.checks{background-color: rgb(0, 50, 0);}

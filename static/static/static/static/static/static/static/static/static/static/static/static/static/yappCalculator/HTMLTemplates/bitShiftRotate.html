@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bit Shift Rotate </title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href=”http://cdn.pydata.org/bokeh/release/bokeh-2.4.2.min.css " rel=”stylesheet” type=”text/css”>
+    <link href=”http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.4.2.min.css" rel=”stylesheet” type=”text/css”>
+    <link rel="shortcut icon" href="http://example.com/myicon.ico">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    
+    <style>
+    </style>
+
+</head>
+<body>
+    <!-- menu area container starts here -->
+    <div class="container-flex p-2 sticky-top menuarea">
+        <span class="d-flex flex-row align-items-center menuitems hover" data-bs-toggle="collapse" data-bs-target="#items" aria-controls="items" aria-expanded="false">
+                    <img src="{% static 'images/calculator.png' %}" alt="calculator"style="width: 50px;height: 50px;"/>
+                    &nbsp; &nbsp; <span class="apptitle">LOGICAL SHIFTING AND ROTATING OPERATIONS</span>
+        </span>
+        <div class="collapse" id="items">
+            <ul class="list-group list-group-horizontal-lg list-group-vertical">
+                <a href="/" class="nav-link active"> <button class="btn button text-light rounded-pill"> <span class="p-1"> Home </span> </button> </a>
+                <a href="/baseConversions" class="nav-link active"> <button class="btn button text-light rounded-pill"> <span class="p-1"> Base Conversions </span> </button> </a>
+                <a href="" class="nav-link active"> <button class="btn button text-light rounded-pill"> <span class="p-1"> Bit Shift/Rotate </span> </span> </button> </a>
+                <a href="" class="nav-link active"> <button class="btn button text-light rounded-pill"> <span class="p-1"> Bit Shift/Rotate </span> </span> </button> </a>
+                <a href="/bitArithmetic" class="nav-link active"> <button class="btn button text-light rounded-pill"> <span class="p-1"> Bit Arithmetic </span> </button> </a>
+            </ul>
+        </div>
+        <hr class="divider">
+    </div>
+    <!-- menu area container ends here -->
+
+    <!-- field inputs and outputs container starts here -->
+    <div class="container">
+        
+        <form action="" method="POST" class="myform">
+            {% csrf_token %}
+            <div class="input-group p-3" id="allTextInputs">
+                <!-- input fields start here -->
+                <div class="container">
+                    <p><h2>LOGICAL SHIFT OPERATIONS</h2></p>
+                    <!-- container 1st row starts here -->
+                    <div class="row align-items-end justify-around">
+                        <!-- container columns in 1st row starts here -->
+                        <div class="col-sm-12 col-md-4 text-dark align-items-center" style="border-radius: 1cm; border: 0.5px red;">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width:100%">DECIMAL INPUT</span>
+                            <div style="display: flex; margin: auto; width: 100%;">
+                                <button id="sdecSub" class="changevalues" type="button"onclick="modifyTextFields()">-</button>
+                                <input type="text" class="w-90 form-control text-center" style="margin: auto;" 
+                                    id="sdec" name="sdec"onchange="modifyFormValues()" value="0">
+                                <button id="sdecAdd" class="changevalues" type="button"onclick="modifyTextFields()">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3 text-dark align-self-center">
+                            <span class="display-3" style="display: table; margin: auto;" > >> </span>
+                        </div>
+                        <div class="col-sm-12 col-md-4 text-dark align-items-center" style="border-radius: 1cm; border: 0.5px red;">
+                            <span class="input-group-text text-primary" style="width:25%">No. of bits</span>
+                            <div style="display: flex; width: 25%;">
+                                <button id="sdecpos1Sub" class="changevalues" type="button"onclick="modifyTextFields()">-</button>
+                                <input type="text" class="w-90 form-control text-center" style="margin: auto;" 
+                                    id="sdecpos1" name="sdecpos1"onchange="modifyFormValues()" value="0">
+                                <button id="sdecpos1Add" class="changevalues" type="button"onclick="modifyTextFields()">+</button>
+                            </div>
+                        </div>
+                        <!-- container columns in 1st row ends here -->
+                    </div>
+                    <!-- container 1st row ends here -->
+                    <p></p>
+                    <!-- container 2nd row starts here -->
+                    <div class="row align-items-end justify-around">
+                        <!-- container columns of 2nd row start here -->
+                        <div class="col-md-2 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">DECIMAL</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;" id="sdecDec" name="sdecDec">
+                        </div>
+                        <div class="col-md-5 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">BINARY</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;" id="sdecBin" name="sdecBin">
+                        </div>
+                        <div class="col-md-5 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">HEXADECIMAL</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;"id="sdecHex" name="sdecHex">
+                        </div>
+                        <!-- container columns of 2nd row end here -->
+                    </div>
+                    <!-- container 2nd row ends here -->
+                </div>
+                <!-- input fields end here -->
+            </div>
+         </form>   
+    </div>
+
+
+
+            <div class="container input-group p-3" id="allTextInputs">
+                <!-- input fields start here -->
+                <div class="container">
+                    <p><h2>LOGICAL ROTATE OPERATIONS</h2></p>
+                    <!-- container 1st row starts here -->
+                    <div class="row align-items-end justify-around">
+                        <!-- container columns in 1st row starts here -->
+                        <div class="col-sm-12 col-md-4 text-dark align-items-center" style="border-radius: 1cm; border: 0.5px red;">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width:100%">DECIMAL INPUT</span>
+                            <div style="display: flex; margin: auto; width: 100%;">
+                                <button id="rdecSub" class="changevalues" type="button"onclick="modifyTextFields()">-</button>
+                                <input type="text" class="w-90 form-control text-center" style="margin: auto;" 
+                                    id="rdec" name="rdec"onchange="modifyFormValues()" value="0">
+                                <button id="rdecAdd" class="changevalues" type="button"onclick="modifyTextFields()">+</button>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3 text-dark align-self-center">
+                            <span class="display-3" style="display: table; margin: auto;" > RoR </span>
+                        </div>
+                        <div class="col-sm-12 col-md-4 text-dark align-items-center" style="border-radius: 1cm; border: 0.5px red;">
+                            <span class="input-group-text text-primary" style="width:25%">No. of bits</span>
+                            <div style="display: flex; width: 25%;">
+                                <button id="rdecpos1Sub" class="changevalues" type="button"onclick="modifyTextFields()">-</button>
+                                <input type="text" class="w-90 form-control text-center" style="margin: auto;" 
+                                    id="rdecpos1" name="rdecpos1"onchange="modifyFormValues()" value="0">
+                                <button id="rdecpos1Add" class="changevalues" type="button"onclick="modifyTextFields()">+</button>
+                            </div>
+                        </div>
+                        <!-- container columns in 1st row ends here -->
+                    </div>
+                    <!-- container 1st row ends here -->
+                    <p></p>
+                    <!-- container 2nd row starts here -->
+                    <div class="row align-items-end justify-around">
+                        <!-- container columns of 2nd row start here -->
+                        <div class="col-md-2 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">DECIMAL</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;" id="rdecDec" name="rdecDec">
+                        </div>
+                        <div class="col-md-5 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">BINARY</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;" id="rdecBin" name="rdecBin">
+                        </div>
+                        <div class="col-md-5 text-dark align-items-center">
+                            <span class="input-group-text text-primary" style="display: table; margin: auto; width: 100%;">HEXADECIMAL</span>
+                            <input type="text" class="w-90 form-control text-center" style="margin: auto;"id="rdecHex" name="rdecHex">
+                        </div>
+                        <!-- container columns of 2nd row end here -->
+                    </div>
+                    <!-- container 2nd row ends here -->
+                </div>
+                <!-- input fields end here -->
+            </div>            
+        </form>
+        
+    </div>
+    <!-- field inputs and outputs container ends here -->
+
+
+
+</body>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/f0f52582e8.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-2.4.2.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.4.2.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.4.2.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.4.2.min.js"></script>
+</html>
